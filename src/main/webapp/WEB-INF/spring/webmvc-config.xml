@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.sample.web" use-default-filters="false">
+        <context:include-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
+    </context:component-scan>
+
+    <!--<bean id="viewResolver"
+          class="com.sample.viewresolver.MultipleViewResolver" p:order="0">
+        <property name="resolvers">
+            <map>
+                <entry key="config">
+                    <bean class="com.sample.viewresolver.GenericFileViewResolver" p:location="/WEB-INF/config/" p:cache="false">
+                        <property name="viewName" value="configFileView"/>
+                    </bean>
+                </entry>
+
+                <entry key="swf">
+                    <bean class="com.sample.viewresolver.GenericFileViewResolver" p:location="/WEB-INF/swf/" p:cache="false">
+                        <property name="viewName" value="swfFileView"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>-->
+
+    <!-- View Resolver for JSP files -->
+    <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="1">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--<bean id="configFileView" class="com.sample.view.GenericFileView"
+          p:contentType="text/plain" p:url="" scope="prototype"/>
+
+
+    <bean id="swfFileView" class="com.sample.view.GenericFileView"
+          p:contentType="application/x-shockwave-flash" p:url="" scope="prototype"/>-->
+</beans>
